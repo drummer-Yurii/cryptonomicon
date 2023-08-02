@@ -1,3 +1,3 @@
 module.exports = {
-    tralingComma: false,
+  tralingComma: false,
 };

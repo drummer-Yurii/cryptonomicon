@@ -435,6 +435,7 @@ export default {
   watch: {
     selectedTicker() {
       this.graph = [];
+      this.$nextTick().then(this.calculateMaxGraphElements);
     },
     tickers() {
       localStorage.setItem("cryptonomicon-list", JSON.stringify(this.tickers));

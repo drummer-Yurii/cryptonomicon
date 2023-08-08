@@ -43,7 +43,7 @@
             <div class="text-sm text-red-600">Такой тикер уже добавлен</div> -->
       </div>
     </div>
-    <add-button @click="add" type="button" class="my-4" />
+    <add-button @click="add" type="button" :didabled="disabled" class="my-4" />
   </section>
 </template>
 
@@ -55,11 +55,25 @@ export default {
   components: {
     AddButton,
   },
+  props: {
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
+
+  emits: {
+    "add-ticker": (value) => typeof value === "string" && value.length > 0,
+  },
   data() {
     return { ticker: "" };
   },
   methods: {
     add() {
+      if (this.ticker.length === 0) {
+        return;
+      }
       this.$emit("add-ticker", this.ticker);
       this.ticker = "";
     },

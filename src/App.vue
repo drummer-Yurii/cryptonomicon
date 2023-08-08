@@ -25,7 +25,7 @@
       </svg>
     </div> -->
     <div class="container">
-      <add-ticker @add-ticker="add" />
+      <add-ticker @add-ticker="add" :disabled="tooManyTickersAdded" />
       <hr class="w-full border-t border-gray-600 my-4" />
       <template v-if="tickers.length">
         <div>
@@ -280,6 +280,9 @@ export default {
   },
 
   computed: {
+    tooManyTickersAdded() {
+      return this.tickers.length > 4;
+    },
     startIndex() {
       return (this.page - 1) * 6;
     },
